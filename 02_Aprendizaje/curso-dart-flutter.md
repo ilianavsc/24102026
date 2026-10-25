@@ -12,16 +12,16 @@ Aprender las bases del lenguaje de programación Dart y dar los primeros pasos e
 ## 📚 Temario y Progreso
 
 ### S01: Introducción
-- [ ] **S01-CL01:** Formato del curso (3 min)
-- [ ] **S01-CL02:** Sistema de puntuación (3 min)
+- [x] **S01-CL01:** Formato del curso (3 min)
+- [x] **S01-CL02:** Sistema de puntuación (3 min)
 
 ### S02: Fundamentos de Dart (Instalación y Tipos)
-- [ ] **S02-CL01:** Instalación Flutter MacOS (3 min)
-- [ ] **S02-CL02:** Editores para Dart (3 min)
-- [ ] **S02-CL03:** Hello World Dart! (4 min)
-- [ ] **S02-CL04:** Variables (7 min)
-- [ ] **S02-CL05:** Final and const (5 min)
-- [ ] **S02-CL06:** Numbers (9 min)
+- [x] **S02-CL01:** Instalación Flutter MacOS (3 min)
+- [x] **S02-CL02:** Editores para Dart (3 min)
+- [x] **S02-CL03:** Hello World Dart! (4 min)
+- [x] **S02-CL04:** Variables (7 min)
+- [x] **S02-CL05:** Final and const (5 min)
+- [x] **S02-CL06:** Numbers (9 min)
 - [ ] **S02-CL07:** Strings (6 min)
 - [ ] **S02-CL08:** Booleans (3 min)
 - [ ] **S02-CL09:** Lists (5 min)
