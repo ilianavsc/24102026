@@ -1,73 +1,88 @@
-# Apuntes: Curso de Dart y Flutter (Udemy)
+# Apuntes Oficiales: Curso de Dart y Flutter (Udemy)
 
+**Estado del curso:** 🟡 En progreso
 **Plataforma:** Udemy
-**Curso original:** Dart & Introducción a Flutter (Gratis)
-**Enlace:** [https://www.udemy.com/course/dart-flutter-gratis/](https://www.udemy.com/course/dart-flutter-gratis/)
+**Objetivo principal:** Dominar Dart para construir la app móvil de la tesis (Robot UCAB).
 
-## 🎯 Objetivo del Curso
-Aprender las bases del lenguaje de programación Dart y dar los primeros pasos en la creación de aplicaciones móviles multiplataforma con Flutter.
-
----
-
-## 📚 Temario y Progreso
-
-### S01: Introducción
-- [x] **S01-CL01:** Formato del curso (3 min)
-- [x] **S01-CL02:** Sistema de puntuación (3 min)
-
-### S02: Fundamentos de Dart (Instalación y Tipos)
-- [x] **S02-CL01:** Instalación Flutter MacOS (3 min)
-- [x] **S02-CL02:** Editores para Dart (3 min)
-- [x] **S02-CL03:** Hello World Dart! (4 min)
-- [x] **S02-CL04:** Variables (7 min)
-- [x] **S02-CL05:** Final and const (5 min)
-- [x] **S02-CL06:** Numbers (9 min)
-- [ ] **S02-CL07:** Strings (6 min)
-- [ ] **S02-CL08:** Booleans (3 min)
-- [ ] **S02-CL09:** Lists (5 min)
-- [ ] **S02-CL10:** Sets (5 min)
-- [ ] **S02-CL11:** Maps (5 min)
-- [ ] **S02-CL12:** Runes (5 min)
-
-### S03: Funciones
-- [ ] **S03-CL01:** Funciones (5 min)
-- [ ] **S03-CL02:** Parámetros opcionales (9 min)
-- [ ] **S03-CL03:** Funciones como parámetro (5 min)
-- [ ] **S03-CL04:** Funciones anónimas (4 min)
-- [ ] **S03-CL05:** Ámbito léxico (2 min)
-
-### S04: Control de Flujo
-- [ ] **S04-CL01:** Condicionales (3 min)
-- [ ] **S04-CL02:** Bucles for (6 min)
-- [ ] **S04-CL03:** Bucles while y do-while (7 min)
-- [ ] **S04-CL04:** Switch y case (3 min)
-
-### S05: Programación Orientada a Objetos (POO)
-- [ ] **S05-CL01:** Clases y constructores (3 min)
-- [ ] **S05-CL02:** Usando constructores y atributos (3 min)
-- [ ] **S05-CL03:** Otros Constructores (5 min)
-- [ ] **S05-CL04:** Métodos (4 min)
-
-### S06: Entorno de Flutter
-- [ ] **S06-CL01:** Instalación Flutter MacOS (5 min)
-- [ ] **S06-CL03:** Instalación Android Studio en MacOS (6 min)
-- [ ] **S06-CL04:** Instalación Android Studio en Windows (16 min)
-- [ ] **S06-CL05:** Instalación plugin Flutter para Android Studio (2 min)
-
-### S07: Primeros pasos en Flutter
-- [ ] **S07-CL01:** Creando un proyecto en Flutter (4 min)
-- [ ] **S07-CL02:** Estructura de proyecto Flutter (6 min)
-- [ ] **S07-CL03:** El fichero "main.dart" (7 min)
-- [ ] **S07-CL04:** Creando emulador Android (4 min)
-- [ ] **S07-CL05:** StatelessWidget (5 min)
-- [ ] **S07-CL06:** Scaffold Widget
+## 🎯 ¿Cómo me sirve este curso para mi Tesis?
+*   **Dart** es el idioma. Me ayudará a crear la lógica de la app.
+*   **Flutter** es el taller. Me permitirá diseñar los botones y pantallas.
+*   Todo lo que aprenda aquí irá directo al código de mi Trabajo de Grado.
 
 ---
 
-## 🚑 Bitácora de Errores (¡Muy importante!)
-*Aquí anotaré cada error de instalación o de código y cómo lo solucioné. Esta sección es oro puro para el futuro.*
+## 📚 Programa del Curso y Progreso
 
-- *Ejemplo: Error al instalar Android Studio porque no encontraba el SDK...*
+### 🟢 Sección 1: Introducción
+- [x] S01-CL01: Formato del curso
+- [x] S01-CL02: Sistema de puntuación
 
-## 💡 Notas y Conceptos Clave
-*Idea: Usar esta sección para anotar definiciones rápidas (¿Qué es un Widget? ¿Qué es un StatefulWidget?).*
+### 🟢 Sección 2: Conceptos básicos (¡Completado!)
+*(Nota: Salté la clase de instalación de MacOS)*
+- [x] S02-CL02: Editores para Dart
+- [x] S02-CL03: Hello World Dart!
+- [x] S02-CL04: Variables
+- [x] S02-CL05: Final and const
+- [x] S02-CL06: Numbers
+- [x] S02-CL07: Strings
+- [x] S02-CL08: Booleans
+- [x] S02-CL09: Lists
+- [x] S02-CL10: Sets
+- [x] S02-CL11: Maps
+- [x] S02-CL12: Runes
+
+**💡 Conexión con la Tesis (Sección 2):**
+*   Las **Listas** me sirven para el catálogo de componentes del laboratorio.
+*   Los **Maps** son la forma en que viajarán los datos del robot por MQTT (como si fuera un JSON).
+
+### 🟡 Sección 3: Funciones en Dart (En progreso)
+- [x] S03-CL01: Funciones
+- [x] S03-CL02: Parámetros opcionales
+- [ ] S03-CL03: Funciones como parámetro
+- [ ] S03-CL04: Funciones anónimas
+- [ ] S03-CL05: Ámbito léxico
+
+**💡 Conexión con la Tesis (Sección 3):**
+*   Las funciones son las "acciones". Ej: `pedirComponente("ESP32")`.
+
+### ⚪ Sección 4: Condicionales y Bucles (Por empezar)
+- [ ] S04-CL01: Condicionales
+- [ ] S04-CL02: Bucles for
+- [ ] S04-CL03: Bucles while y do-while
+- [ ] S04-CL04: Switch y case
+
+**💡 Conexión con la Tesis (Sección 4):**
+*   Aquí aprenderé a decirle al código: *"SI el robot llegó, ENTONCES detenerse"*.
+
+### ⚪ Sección 5: Clases y Constructores (Por empezar)
+- [ ] S05-CL01: Clases y constructores
+- [ ] S05-CL02: Usando constructores y atributos
+- [ ] S05-CL03: Otros Constructores
+- [ ] S05-CL04: Métodos
+
+**💡 Conexión con la Tesis (Sección 5):**
+*   Crearé el molde (Clase) para los "Componentes" y las "Solicitudes".
+
+### ⚪ Sección 6: Instalación de Flutter (Por empezar)
+*(Nota: Saltar las de MacOS)*
+- [ ] S06-CL04: Instalación Android Studio en Windows
+- [ ] S06-CL05: Instalación plugin Flutter para Android Studio
+
+### ⚪ Sección 7: Creando el primer proyecto en Flutter (Por empezar)
+- [ ] S07-CL01: Creando un proyecto en Flutter
+- [ ] S07-CL02: Estructura de proyecto Flutter
+- [ ] S07-CL03: El fichero "main.dart"
+- [ ] S07-CL04: Creando emulador Android
+- [ ] S07-CL05: StatelessWidget
+- [ ] S07-CL06: Scaffold Widget
+
+---
+
+## 🧠 Bitácora de Dudas y Errores
+*(Aquí anotaré si algún concepto se me complica o si la terminal me da un error)*
+
+*   *Duda:* [Anotar aquí]
+*   *Solución:* [Anotar aquí]
+
+---
+*Documento generado como parte de mi formación autodidacta.*
