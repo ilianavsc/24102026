@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1a2540">
+  <title>Fundamentos de Radio y Televisión | SRD - UCAB</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #1a2540;
+      --navy-2: #111a31;
+      --navy-3: #0a1022;
+      --cyan: #2dd4e5;
+      --coral: #ff7a87;
+      --white: #f0f4fc;
+      --muted: #aebbd4;
+      --line: rgba(240, 244, 252, .12);
+      --shadow: 0 24px 70px rgba(0,0,0,.35);
+      --radius: 28px;
+      --ease: cubic-bezier(.22,.61,.36,1);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--navy-3);
+      color: var(--white);
+      font-family: "Inter", "Manrope", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ============ FONDO ANIMADO ============ */
+    #particles {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .55;
+    }
+
+    .ambient {
+      position: fixed;
+      inset: -20%;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(45,212,229,.12), transparent 28%),
+        radial-gradient(circle at 82% 72%, rgba(255,122,135,.10), transparent 30%),
+        radial-gradient(circle at 55% 45%, rgba(45,212,229,.045), transparent 32%);
+      filter: blur(10px);
+      animation: ambientMove 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambientMove {
+      from { transform: translate3d(-1%, -1%, 0) scale(1); }
+      to   { transform: translate3d(1%, 1%, 0) scale(1.04); }
+    }
+
+    /* ============ CONTENEDOR PRINCIPAL ============ */
+    .presentation {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px clamp(20px, 3vw, 50px);
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+    }
+
+    /* ============ LÁMINAS ============ */
+    .slide {
+      position: relative;
+      padding: clamp(40px, 5vw, 70px) clamp(30px, 5vw, 70px);
+      border: 1px solid rgba(45,212,229,.08);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 80% 10%, rgba(45,212,229,.06), transparent 40%),
+        radial-gradient(circle at 20% 90%, rgba(255,122,135,.05), transparent 40%),
+        linear-gradient(160deg, rgba(20,30,55,.75), rgba(10,16,34,.85));
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+      isolation: isolate;
+      min-height: 500px;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), #6ee3ee 50%, var(--coral));
+      box-shadow: 0 0 24px rgba(45,212,229,.5);
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      width: 32vw;
+      height: 32vw;
+      max-width: 420px;
+      max-height: 420px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,122,135,.05);
+      right: -12vw;
+      bottom: -12vw;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .content {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 14px;
+      color: var(--cyan);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 920px;
+      margin-bottom: 20px;
+      font-family: "Manrope", "Inter", sans-serif;
+      font-size: clamp(2.5rem, 6vw, 6.8rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 800;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-family: "Manrope", "Inter", sans-serif;
+      font-size: clamp(2rem, 4vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -.045em;
+      font-weight: 800;
+    }
+
+    h3 {
+      margin-bottom: 7px;
+      font-size: 1.05rem;
+      letter-spacing: -.015em;
+    }
+
+    .lead {
+      max-width: 790px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.5vw, 1.3rem);
+      line-height: 1.65;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, var(--white) 20%, var(--cyan) 58%, var(--coral) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* ============ TARJETAS ============ */
+    .grid { display: grid; gap: 18px; }
+    .two { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .four { grid-template-columns: repeat(4, minmax(0,1fr)); }
+
+    .card {
+      position: relative;
+      min-height: 145px;
+      padding: 23px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(240,244,252,.085), rgba(240,244,252,.035));
+      box-shadow: 0 14px 45px rgba(0,0,0,.18);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform .4s var(--ease), border-color .4s ease, box-shadow .4s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), transparent 75%);
+      opacity: .9;
+    }
+
+    .card.coral::before {
+      background: linear-gradient(90deg, var(--coral), transparent 75%);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(45,212,229,.34);
+      box-shadow: 0 24px 65px rgba(0,0,0,.30), 0 0 35px rgba(45,212,229,.07);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.55;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      margin-bottom: 13px;
+      border: 1px solid rgba(45,212,229,.22);
+      border-radius: 999px;
+      color: var(--cyan);
+      background: rgba(45,212,229,.06);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      margin-bottom: 15px;
+      border-radius: 17px;
+      background: rgba(45,212,229,.09);
+      border: 1px solid rgba(45,212,229,.18);
+      font-size: 1.75rem;
+      box-shadow: inset 0 0 20px rgba(45,212,229,.04);
+    }
+
+    /* ============ PORTADA ============ */
+    .cover {
+      display: grid;
+      grid-template-columns: minmax(200px, 280px) 1fr minmax(200px, 280px);
+      align-items: center;
+      gap: clamp(20px, 3vw, 50px);
+      min-height: 65vh;
+      padding: 20px 0;
+    }
+
+    .cover-copy {
+      text-align: center;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cover h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.4rem, 4.5vw, 5rem);
+      line-height: 1.02;
+      letter-spacing: -.05em;
+    }
+
+    .cover h1 .line-1 {
+      display: block;
+      color: var(--white);
+    }
+
+    .cover h1 .line-2 {
+      display: block;
+      background: linear-gradient(100deg, var(--cyan) 0%, var(--coral) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      color: var(--cyan);
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .78rem;
+      margin-bottom: 22px;
+    }
+
+    .cover-lead {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: clamp(.95rem, 1.2vw, 1.1rem);
+      line-height: 1.6;
+      margin: 0 auto 26px;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .meta span {
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(240,244,252,.045);
+      color: var(--muted);
+      font-size: .74rem;
+      font-weight: 500;
+    }
+
+    .side-image {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      max-height: 320px;
+      display: grid;
+      place-items: center;
+      opacity: .95;
+      align-self: center;
+    }
+
+    .side-image::before {
+      content: "";
+      position: absolute;
+      inset: 8%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45,212,229,.15), transparent 68%);
+      filter: blur(14px);
+      animation: pulseGlow 5s ease-in-out infinite;
+    }
+
+    .side-image.right::before {
+      background: radial-gradient(circle, rgba(255,122,135,.14), transparent 68%);
+      animation-delay: 2.5s;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: .75; transform: scale(1); }
+      50%      { opacity: 1;   transform: scale(1.08); }
+    }
+
+    .side-image img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: screen;
+      filter: saturate(.95) contrast(1.06) drop-shadow(0 22px 38px rgba(0,0,0,.35));
+    }
+
+    /* ============ PREGUNTA DESTACADA ============ */
+    .question {
+      width: fit-content;
+      max-width: 100%;
+      margin: 12px 0 26px;
+      padding: 16px 20px;
+      border-left: 3px solid var(--cyan);
+      border-radius: 0 18px 18px 0;
+      background: linear-gradient(90deg, rgba(45,212,229,.10), transparent);
+      color: var(--white);
+      font-size: clamp(1rem, 1.8vw, 1.35rem);
+      font-weight: 700;
+      box-shadow: -10px 0 35px rgba(45,212,229,.045);
+    }
+
+    /* ============ IMÁGENES INTEGRADAS ============ */
+    .media-card {
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .media {
+      position: relative;
+      height: 155px;
+      margin: -5px -8px 15px;
+      overflow: hidden;
+      border-radius: 18px;
+      background: radial-gradient(circle at center, rgba(45,212,229,.08), transparent 70%);
+    }
+
+    .media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: screen;
+      filter: contrast(1.05) saturate(.95);
+      transition: transform .55s var(--ease), filter .55s ease;
+    }
+
+    .card:hover .media img {
+      transform: scale(1.055);
+      filter: contrast(1.1) saturate(1.05);
+    }
+
+    /* ============ CAMINO / DIAGRAMAS ============ */
+    .path {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      gap: 10px;
+      margin: 25px 0 28px;
+    }
+
+    .node {
+      position: relative;
+      min-height: 155px;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      background: linear-gradient(145deg, rgba(240,244,252,.085), rgba(240,244,252,.025));
+      backdrop-filter: blur(15px);
+      box-shadow: var(--shadow);
+    }
+
+    .node strong { display: block; margin-top: 8px; font-size: 1.1rem; }
+    .node small { color: var(--muted); font-size: .78rem; }
+    .node .big-icon { font-size: 2.5rem; }
+
+    .connector {
+      position: relative;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--coral));
+      opacity: .7;
+    }
+
+    .connector::after {
+      content: "›";
+      position: absolute;
+      right: -4px;
+      top: -15px;
+      color: var(--cyan);
+      font-size: 2rem;
+    }
+
+    .keywords {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    .keyword {
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(240,244,252,.035);
+      font-size: .82rem;
+    }
+
+    .keyword b { color: var(--white); }
+
+    /* ============ RUTAS ============ */
+    .routes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+
+    .route {
+      flex: 1 1 180px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(240,244,252,.045);
+    }
+
+    .route strong { display: block; margin-bottom: 4px; color: var(--cyan); font-size: .9rem; }
+    .route span { color: var(--muted); font-size: .84rem; }
+
+    /* ============ CIERRE ============ */
+    .closing { text-align: center; max-width: 850px; margin: auto; }
+
+    .closing-icons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 24px;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      filter: drop-shadow(0 10px 30px rgba(45,212,229,.12));
+    }
+
+    .closing h2 { font-size: clamp(3rem, 6vw, 6rem); }
+
+    .bullet-list {
+      display: grid;
+      gap: 9px;
+      max-width: 780px;
+      margin: 25px auto 30px;
+      text-align: left;
+    }
+
+    .bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 1rem;
+    }
+
+    .bullet::before {
+      content: "✓";
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      color: var(--navy);
+      background: var(--cyan);
+      font-size: .72rem;
+      font-weight: 900;
+    }
+
+    .thanks {
+      display: inline-block;
+      margin-top: 5px;
+      padding: 14px 22px;
+      border: 1px solid rgba(45,212,229,.25);
+      border-radius: 999px;
+      background: rgba(45,212,229,.07);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    /* ============ NUMERACIÓN DE LÁMINAS ============ */
+    .slide-number {
+      position: absolute;
+      top: 22px;
+      right: 26px;
+      z-index: 5;
+      color: rgba(240,244,252,.4);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+    }
+
+    /* ============ ANIMACIONES ============ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: reveal .8s var(--ease) forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes reveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 900px) {
+      .presentation { padding: 20px 14px; gap: 30px; }
+      .slide { padding: 40px 26px; min-height: auto; }
+      .cover {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        min-height: auto;
+      }
+      .cover-copy { grid-column: 1 / -1; grid-row: 1; }
+      .side-image { max-height: 140px; aspect-ratio: 1/1; }
+      .three, .four { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 620px) {
+      .presentation { padding: 14px 10px; gap: 20px; }
+      .slide { padding: 32px 20px; border-radius: 22px; }
+      .slide::after { display: none; }
+      h2 { font-size: 2.2rem; }
+      .lead { font-size: .95rem; }
+      .two, .three, .four { grid-template-columns: 1fr; }
+      .card { min-height: 125px; padding: 19px; border-radius: 22px; }
+      .media-card { min-height: 230px; }
+      .media { height: 130px; }
+      .cover h1 { font-size: 2.2rem; }
+      .cover-lead { font-size: .9rem; }
+      .side-image { max-height: 100px; }
+      .path { grid-template-columns: 1fr; gap: 8px; }
+      .connector {
+        width: 2px; height: 22px;
+        margin: auto;
+        background: linear-gradient(180deg, var(--cyan), var(--coral));
+      }
+      .connector::after {
+        content: "↓";
+        top: 6px; right: -7px;
+        font-size: 1.4rem;
+      }
+      .node { min-height: 90px; }
+      .node .big-icon { font-size: 1.8rem; }
+      .slide-number { top: 14px; right: 16px; font-size: .6rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ambient"></div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <main class="presentation">
+
+    <!-- LÁMINA 1 · PORTADA -->
+    <section class="slide">
+      <div class="slide-number">01 / 08</div>
+      <div class="content cover">
+
+        <div class="side-image reveal" style="--delay:.15s">
+          <img src="im5.webp" alt="Micrófono representando la radio">
+        </div>
+
+        <div class="cover-copy">
+          <div class="eyebrow reveal" style="--delay:.10s">Sistemas de Radiodifusión · UCAB</div>
+
+          <h1 class="reveal" style="--delay:.20s">
+            <span class="line-1">Fundamentos de</span>
+            <span class="line-2">Radio y Televisión</span>
+          </h1>
+
+          <div class="subtitle reveal" style="--delay:.32s">Sistemas de Radiodifusión (SRD)</div>
+
+          <p class="cover-lead reveal" style="--delay:.42s">
+            Una mirada a los fundamentos, evolución y relevancia de dos medios
+            que transformaron la comunicación.
+          </p>
+
+          <div class="meta reveal" style="--delay:.52s">
+            <span>Iliana</span>
+            <span>Andrea</span>
+            <span>Prof. Berardo Di Attanasio Falconi</span>
+            <span>UCAB</span>
+          </div>
+        </div>
+
+        <div class="side-image right reveal" style="--delay:.28s">
+          <img src="im6.webp" alt="Televisor representando la televisión">
+        </div>
+      </div>
+    </section>
+
+    <!-- LÁMINA 2 · INTRODUCCIÓN -->
+    <section class="slide">
+      <div class="slide-number">02 / 08</div>
+      <div class="content">
+        <div class="eyebrow reveal" style="--delay:.05s">01 · Contexto</div>
+        <h2 class="reveal" style="--delay:.10s">Introducción</h2>
+
+        <p class="lead reveal" style="--delay:.16s">
+          La radio y la televisión son los medios de comunicación masiva más importantes
+          de la historia. Hoy hablaremos de cómo funcionan y por qué siguen siendo relevantes.
+        </p>
+
+        <div class="question reveal" style="--delay:.23s">📻 &nbsp;→&nbsp; 📺 &nbsp; De la señal analógica a la era digital</div>
+
+        <div class="grid two">
+          <article class="card media-card reveal" style="--delay:.30s">
+            <div>
+              <span class="tag">Antes</span>
+              <div class="media"><img src="im1.webp" alt="Onda senoidal analógica"></div>
+              <h3>Señal analógica</h3>
+              <p>Ondas continuas y sensibles al ruido.</p>
+            </div>
+          </article>
+
+          <article class="card media-card coral reveal" style="--delay:.39s">
+            <div>
+              <span class="tag">Ahora</span>
+              <div class="media"><img src="im2.webp" alt="Pulsos digitales"></div>
+              <h3>Señal digital</h3>
+              <p>Datos binarios con mejor calidad.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LÁMINA 3 · RADIO -->
+    <section class="slide">
+      <div class="slide-number">03 / 08</div>
+      <div class="content">
+        <div class="eyebrow reveal" style="--delay:.05s">02 · Audio</div>
+        <h2 class="reveal" style="--delay:.10s">La Radio</h2>
+        <div class="question reveal" style="--delay:.16s">¿Qué es la radio y para qué sirve?</div>
+
+        <div class="grid four reveal" style="--delay:.23s">
+          <article class="card">
+            <div class="icon">📻</div>
+            <h3>Radio</h3>
+            <p>Comunicación mediante ondas electromagnéticas.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🎵</div>
+            <h3>Música</h3>
+            <p>Difusión de contenido sonoro para todos.</p>
+          </article>
+          <article class="card">
+            <div class="icon">📰</div>
+            <h3>Noticias</h3>
+            <p>Información rápida y de amplio alcance.</p>
+          </article>
+          <article class="card">
+            <div class="icon">⚽</div>
+            <h3>Deportes</h3>
+            <p>Transmisiones en vivo y entretenimiento.</p>
+          </article>
+        </div>
+
+        <div class="grid two" style="margin-top:18px">
+          <article class="card media-card reveal" style="--delay:.30s">
+            <span class="tag">AM · Amplitud Modulada</span>
+            <div class="media"><img src="im9.webp" alt="Onda AM"></div>
+            <p>Llega más lejos porque rebota en la ionosfera.</p>
+          </article>
+
+          <article class="card media-card coral reveal" style="--delay:.38s">
+            <span class="tag">FM · Frecuencia Modulada</span>
+            <div class="media"><img src="im10.webp" alt="Onda FM"></div>
+            <p>Se escucha más claro por su alta fidelidad.</p>
+          </article>
+        </div>
+
+        <article class="card reveal" style="--delay:.47s; margin-top:18px; min-height:auto">
+          <h3>💡 Dato importante</h3>
+          <p>La radio es gratis, llega a casi todos lados y en emergencias solo necesita pilas.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- LÁMINA 4 · CAMINO DE LA RADIO -->
+    <section class="slide">
+      <div class="slide-number">04 / 08</div>
+      <div class="content">
+        <div class="eyebrow reveal" style="--delay:.05s">03 · Transmisión</div>
+        <h2 class="reveal" style="--delay:.10s">El Camino de la Radio</h2>
+        <div class="question reveal" style="--delay:.16s">¿Cómo viaja el sonido hasta tu radio?</div>
+
+        <div class="path">
+          <div class="node reveal" style="--delay:.25s">
+            <div>
+              <div class="big-icon">🎙️</div>
+              <strong>Emisora</strong>
+              <small>Genera y transmite la señal</small>
+            </div>
+          </div>
+
+          <div class="connector reveal" style="--delay:.32s"></div>
+
+          <div class="node reveal" style="--delay:.39s">
+            <div>
+              <div class="big-icon">〰️</div>
+              <strong>Aire</strong>
+              <small>Canal de propagación</small>
+            </div>
+          </div>
+
+          <div class="connector reveal" style="--delay:.46s"></div>
+
+          <div class="node reveal" style="--delay:.53s">
+            <div>
+              <div class="big-icon">📻</div>
+              <strong>Radio</strong>
+              <small>Recibe y reproduce</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="keywords reveal" style="--delay:.60s">
+          <span class="keyword"><b>Fuente</b></span>
+          <span class="keyword">→</span>
+          <span class="keyword"><b>Transmisor</b></span>
+          <span class="keyword">→</span>
+          <span class="keyword"><b>Canal</b></span>
+          <span class="keyword">→</span>
+          <span class="keyword"><b>Receptor</b></span>
+          <span class="keyword">→</span>
+          <span class="keyword"><b>Destino</b></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- LÁMINA 5 · TELEVISIÓN -->
+    <section class="slide">
+      <div class="slide-number">05 / 08</div>
+      <div class="content">
+        <div class="eyebrow reveal" style="--delay:.05s">04 · Imagen + Audio</div>
+        <h2 class="reveal" style="--delay:.10s">La Televisión</h2>
+        <div class="question reveal" style="--delay:.16s">¿Qué es la tele y en qué se diferencia de la radio?</div>
+
+        <div class="grid four reveal" style="--delay:.23s">
+          <article class="card">
+            <div class="icon">📺</div>
+            <h3>Televisión</h3>
+            <p>Combina imagen y sonido para comunicar.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🎬</div>
+            <h3>Películas</h3>
+            <p>Contenido audiovisual de entretenimiento.</p>
+          </article>
+          <article class="card">
+            <div class="icon">📺</div>
+            <h3>Series</h3>
+            <p>Historias distribuidas por episodios.</p>
+          </article>
+          <article class="card">
+            <div class="icon">📰</div>
+            <h3>Noticias</h3>
+            <p>Información con imagen y sonido.</p>
+          </article>
+        </div>
+
+        <div class="grid two" style="margin-top:18px">
+          <article class="card media-card reveal" style="--delay:.30s">
+            <span class="tag">TV Analógica</span>
+            <div class="media"><img src="im3.webp" alt="Televisor retro analógico"></div>
+            <p>Imagen con ruido · un solo canal · relación 4:3.</p>
+          </article>
+
+          <article class="card media-card coral reveal" style="--delay:.38s">
+            <span class="tag">TV Digital</span>
+            <div class="media"><img src="im4.webp" alt="Pantalla digital"></div>
+            <p>HD/4K · varios canales · subtítulos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LÁMINA 6 · CAMINO DE LA TELEVISIÓN -->
+    <section class="slide">
+      <div class="slide-number">06 / 08</div>
+      <div class="content">
+        <div class="eyebrow reveal" style="--delay:.05s">05 · Transmisión</div>
+        <h2 class="reveal" style="--delay:.10s">El Camino de la Televisión</h2>
+        <div class="question reveal" style="--delay:.16s">¿Cómo llega la imagen y el sonido a tu tele?</div>
+
+        <div class="path">
+          <div class="node reveal" style="--delay:.25s">
+            <div>
+              <div class="big-icon">🎥</div>
+              <strong>Cámara</strong>
+              <small>Captura imagen y sonido</small>
+            </div>
+          </div>
+
+          <div class="connector reveal" style="--delay:.34s"></div>
+
+          <div class="node reveal" style="--delay:.43s">
+            <div>
+              <div class="big-icon">〰️</div>
+              <strong>Ondas / Cable</strong>
+              <small>Transporta la información</small>
+            </div>
+          </div>
+
+          <div class="connector reveal" style="--delay:.52s"></div>
+
+          <div class="node reveal" style="--delay:.61s">
+            <div>
+              <div class="big-icon">📺</div>
+              <strong>Tele</strong>
+              <small>Recibe y muestra el contenido</small>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="reveal" style="--delay:.68s; text-align:center; margin-top:5px">Formas de transmitir</h3>
+
+        <div class="routes reveal" style="--delay:.74s">
+          <div class="route">
+            <strong>Por aire</strong>
+            <span>VHF / UHF</span>
+          </div>
+          <div class="route">
+            <strong>Por cable</strong>
+            <span>Red física de distribución</span>
+          </div>
+          <div class="route">
+            <strong>Por satélite</strong>
+            <span>Enlace mediante satélite</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LÁMINA 7 · IMPORTANCIA -->
+    <section class="slide">
+      <div class="slide-number">07 / 08</div>
+      <div class="content">
+        <div class="eyebrow reveal" style="--delay:.05s">06 · Relevancia</div>
+        <h2 class="reveal" style="--delay:.10s">Importancia de Radio y TV</h2>
+        <div class="question reveal" style="--delay:.16s">¿Por qué siguen siendo importantes hoy en día?</div>
+
+        <div class="grid three">
+          <article class="card media-card reveal" style="--delay:.25s">
+            <span class="tag">Informar</span>
+            <div class="media"><img src="im7.webp" alt="Comunidad informándose"></div>
+            <h3>Información</h3>
+            <p>Conectan a las personas con acontecimientos y noticias.</p>
+          </article>
+
+          <article class="card media-card coral reveal" style="--delay:.34s">
+            <span class="tag">Entretener</span>
+            <div class="media"><img src="im8.webp" alt="Cultura y entretenimiento"></div>
+            <h3>Entretenimiento</h3>
+            <p>Ofrecen música, películas, series, deportes y cultura.</p>
+          </article>
+
+          <article class="card media-card reveal" style="--delay:.43s">
+            <span class="tag">Educar</span>
+            <div class="media"><img src="im11.jfif" alt="Educación y conocimiento"></div>
+            <h3>Conocimiento</h3>
+            <p>También permiten transmitir contenidos educativos y culturales a grandes audiencias.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LÁMINA 8 · CONCLUSIONES -->
+    <section class="slide">
+      <div class="slide-number">08 / 08</div>
+      <div class="content closing">
+        <div class="eyebrow reveal" style="--delay:.05s">07 · Cierre</div>
+
+        <div class="closing-icons reveal" style="--delay:.10s">
+          <span>📻</span><span>❤️</span><span>📺</span>
+        </div>
+
+        <h2 class="gradient-text reveal" style="--delay:.18s">Conclusiones</h2>
+
+        <div class="bullet-list reveal" style="--delay:.27s">
+          <div class="bullet">Las dos usan ondas.</div>
+          <div class="bullet">Antes analógicas y ahora digitales.</div>
+          <div class="bullet">La radio es más simple.</div>
+          <div class="bullet">La televisión es más completa.</div>
+          <div class="bullet">Ambas informan, entretienen y educan.</div>
+        </div>
+
+        <div class="thanks reveal" style="--delay:.40s">¡Gracias por su atención! · Iliana y Andrea</div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    /* ============ PARTÍCULAS SUTILES DE FONDO ============ */
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+    let width = 0;
+    let height = 0;
+
+    function resizeCanvas() {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+
+      canvas.width = width * ratio;
+      canvas.height = height * ratio;
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+      const count = Math.min(70, Math.max(28, Math.floor((width * height) / 26000)));
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 1.5 + .35,
+        vx: (Math.random() - .5) * .18,
+        vy: (Math.random() - .5) * .18,
+        a: Math.random() * .45 + .08
+      }));
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < -10) p.x = width + 10;
+        if (p.x > width + 10) p.x = -10;
+        if (p.y < -10) p.y = height + 10;
+        if (p.y > height + 10) p.y = -10;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(45,212,229,${p.a})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(drawParticles);
+    }
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+    drawParticles();
+
+    /* ============ ANIMACIONES DE ENTRADA AL HACER SCROLL ============ */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".slide").forEach(slide => observer.observe(slide));
+  </script>
+</body>
+</html>

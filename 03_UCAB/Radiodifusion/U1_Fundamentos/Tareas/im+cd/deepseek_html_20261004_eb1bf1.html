@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .tabla-responsiva {
+            overflow-x: auto;
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #d1d5db;
+            min-width: 800px;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            border: 1px solid #d1d5db;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f3f4f6;
+            text-align: center;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        td:nth-child(1) {
+            background-color: #f9fafb;
+            font-weight: bold;
+            color: #374151;
+            width: 18%;
+        }
+
+        td:nth-child(2), td:nth-child(3) {
+            width: 41%;
+        }
+
+        th.radio-col {
+            border-top: 4px solid #00bcd4;
+        }
+        
+        th.tv-col {
+            border-top: 4px solid #ff7f50;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        /* ============ IMÁGENES DENTRO DEL CUADRO ============ */
+        .imagen-celda {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            margin-top: 14px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+        }
+
+        .imagen-caption {
+            display: block;
+            font-size: 12px;
+            color: #6b7280;
+            text-align: center;
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        /* Ajustes para impresión en PDF */
+        @media print {
+            body {
+                font-size: 10pt;
+                padding: 0;
+                background-color: white;
+            }
+            .tabla-responsiva {
+                overflow: visible;
+            }
+            table {
+                min-width: auto;
+            }
+            th, td {
+                padding: 10px;
+            }
+            th {
+                background-color: #f3f4f6 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            td:nth-child(1) {
+                background-color: #f9fafb !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            th.radio-col {
+                border-top: 4px solid #00bcd4 !important;
+            }
+            th.tv-col {
+                border-top: 4px solid #ff7f50 !important;
+            }
+            tbody tr:nth-child(even) {
+                background-color: #fcfcfc !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            tr {
+                page-break-inside: avoid;
+            }
+            .imagen-celda {
+                max-width: 95%;
+                margin: 8px auto 0;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tabla-responsiva">
+        <table>
+            <thead>
+                <tr>
+                    <th>Componente</th>
+                    <th class="radio-col">Estación de Radio</th>
+                    <th class="tv-col">Estación de Televisión</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- FILA 1: ESTUDIOS (con imágenes) -->
+                <tr>
+                    <td>1. Estudios de grabación o en vivo</td>
+
+                    <td>
+                        Cabina pequeña e insonorizada. Tiene micrófonos, consola de audio, computadora y audífonos. Se usa para locutar, poner música y grabar podcasts.
+                        <img src="diagrama-radio.jfif" alt="Diagrama de un estudio de radio" class="imagen-celda">
+                        <span class="imagen-caption">Diagrama de un estudio de radio</span>
+                    </td>
+
+                    <td>
+                        Estudio grande. Tiene cámaras, luces, micrófonos, escenografía y monitores. Se usa para grabar noticieros y programas en vivo.
+                        <img src="diagrama-tv.jfif" alt="Diagrama de un estudio de TV" class="imagen-celda">
+                        <span class="imagen-caption">Diagrama de un estudio de TV</span>
+                    </td>
+                </tr>
+
+                <!-- FILA 2 -->
+                <tr>
+                    <td>2. Salas de recepción de señales</td>
+                    <td>Reciben señales por antenas, satélite o internet. Se usan para recibir música, noticias y transmisiones de enviados especiales.</td>
+                    <td>Reciben señales por antenas parabólicas (satélite), microondas y fibra óptica. Se usan para recibir videos en vivo de otros lugares.</td>
+                </tr>
+
+                <!-- FILA 3 -->
+                <tr>
+                    <td>3. Salas de edición y archivos</td>
+                    <td>Computadoras con software de audio (Audacity, Adobe Audition). Discos duros y servidores. Se editan voces, música y se guardan audios.</td>
+                    <td>Computadoras potentes con software de video (Premiere, DaVinci). Servidores grandes. Se editan videos, imágenes y se guardan archivos pesados.</td>
+                </tr>
+
+                <!-- FILA 4 -->
+                <tr>
+                    <td>4. Salas de control de calidad</td>
+                    <td>Monitores de audio y vúmetros. Se revisa que el sonido no se distorsione, que no haya ruidos molestos y que el volumen sea el correcto.</td>
+                    <td>Monitores de video y osciloscopios. Se revisa que la imagen sea nítida, que los colores estén bien y que el audio esté sincronizado.</td>
+                </tr>
+
+                <!-- FILA 5 -->
+                <tr>
+                    <td>5. Sala de control maestro</td>
+                    <td>Es el corazón de la radio. Tiene la consola principal y la computadora de automatización. Decide qué programa sale al aire y coordina la programación.</td>
+                    <td>Es el cerebro de la TV. Tiene un panel con muchos monitores y una consola de video. Decide qué cámara o video sale al aire y coordina toda la transmisión.</td>
+                </tr>
+
+                <!-- FILA 6: DISTRIBUCIÓN (con imágenes) -->
+                <tr>
+                    <td>6. Sala de distribución de la señal</td>
+
+                    <td>
+                        Tiene el transmisor de AM/FM, la antena y equipos de enlace satelital o internet. Envía la señal a los radioescuchas.
+                        <img src="diagrama-flujo.jfif" alt="Diagrama de flujo de la señal" class="imagen-celda">
+                        <span class="imagen-caption">Flujo de la señal: Estudio → Control Maestro → Distribución → Antena</span>
+                    </td>
+
+                    <td>
+                        Tiene el transmisor de VHF/UHF, antenas, satélite, cable (CATV), fibra óptica e IPTV. Envía la señal a los televidentes.
+                        <img src="diagrama-catv.jfif" alt="Esquema del sistema CATV" class="imagen-celda">
+                        <span class="imagen-caption">Esquema del sistema CATV: Antena → Combinador → Booster → Casas</span>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

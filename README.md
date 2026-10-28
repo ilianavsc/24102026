@@ -24,6 +24,7 @@ Organizo mi «Segundo Cerebro» en carpetas para encontrar fácilmente mis apunt
 - 📂 **`00_Bitacora/`**: Mi diario de desarrollo. Registro mis logros, avances y errores, junto con las soluciones que encuentro.
 - 📂 **`01_Proyectos/`**: Espacio destinado al código y los recursos de mis proyectos, incluida la aplicación de mi tesis. *(Carpeta por crear.)*
 - 📂 **`02_Aprendizaje/`**: Apuntes y seguimiento de mis cursos de Git y GitHub, Dart/Flutter e inglés, con resúmenes en Markdown.
+- 📂 **`03_UCAB/`**: Material del semestre Sep 2026 - Ene 2027: Seminario TG, Radiodifusión, Sistemas Inalámbricos y Redes Ópticas.
 
 ---
 
